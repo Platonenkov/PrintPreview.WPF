@@ -4,7 +4,7 @@
     <TargetFrameworks>net6.0-windows;netcoreapp3.1-windows;net5.0-windows;net35;</TargetFrameworks>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <Version>6.1.0.5</Version>
+    <Version>6.0.0.0</Version>
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
 
