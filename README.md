@@ -1,6 +1,11 @@
 # PrintPreview.WPF
 Adds PrintDialog wraper to your project (with preview window)
 
+
+Install-Package Notification.WPF -Version 6.0.0.0
+
+![Demo](https://github.com/Platonenkov/PrintPreview.WPF/blob/dev/Resources/preview.png)
+
 Repo contains two projects:
 * **PrintPreview.WPF** - Class library.
 * **PrintPreview.WPF.Test** - C# Sample Project, examine IPrint class library usage.
