@@ -5,29 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:properties="clr-namespace:PrintPreview.WPF.Properties"
         mc:Ignorable="d"
-        Title="{x:Static properties:Resources.Title}" Height="600" Width="800" WindowState="Maximized" BorderBrush="Black" Loaded="Preview_Loaded">
+        Title="{x:Static properties:Resources.Title}"
+        Height="600"
+        Width="800"
+        WindowState="Maximized"
+        BorderBrush="Black"
+        Loaded="Preview_Loaded">
     <Grid>
         <DockPanel LastChildFill="True">
-            <Border DockPanel.Dock="Left" Width="310" BorderThickness="0,0,1,0">
-                <StackPanel x:Name="stpPrint" Orientation="Vertical" Margin="10">
-                    <TextBlock Text="{x:Static properties:Resources.Header}" FontSize="20" Margin="0,0,0,20"/>
+            <Border DockPanel.Dock="Left"
+                    Width="310"
+                    BorderThickness="0,0,1,0">
+                <StackPanel x:Name="stpPrint"
+                            Orientation="Vertical"
+                            Margin="10">
+                    <TextBlock Text="{x:Static properties:Resources.Header}"
+                               FontSize="20"
+                               Margin="0,0,0,20" />
                     <DockPanel Margin="0,0,0,30">
-                        <TextBlock DockPanel.Dock="Top"><Run Text="{x:Static properties:Resources.PageCountPrefix}"/><Run x:Name="rnPageCount" Text="0"/><Run Text="{x:Static properties:Resources.PageCountSuffix}"/></TextBlock>
+                        <TextBlock DockPanel.Dock="Top"><Run Text="{x:Static properties:Resources.PageCountPrefix}" /><Run x:Name="rnPageCount"
+                                                                                                                           Text="0" /><Run Text="{x:Static properties:Resources.PageCountSuffix}" /></TextBlock>
                     </DockPanel>
                     <DockPanel Margin="0,0,0,30">
-                        <TextBlock Text="{x:Static properties:Resources.Pages}" Width="100" DockPanel.Dock="Left" VerticalAlignment="Top"/>
+                        <TextBlock Text="{x:Static properties:Resources.Pages}"
+                                   Width="100"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Top" />
                         <DockPanel>
-                            <RadioButton x:Name="rbPagesAll" DockPanel.Dock="Top" Content="{x:Static properties:Resources.PagesAll}" Margin="0,5,0,5" VerticalContentAlignment="Center" IsChecked="True"/>
-                            <RadioButton x:Name="rbPages" DockPanel.Dock="Bottom" HorizontalContentAlignment="Stretch" Margin="0,5,0,5" VerticalContentAlignment="Center">
+                            <RadioButton x:Name="rbPagesAll"
+                                         DockPanel.Dock="Top"
+                                         Content="{x:Static properties:Resources.PagesAll}"
+                                         Margin="0,5,0,5"
+                                         VerticalContentAlignment="Center"
+                                         IsChecked="True" />
+                            <RadioButton x:Name="rbPages"
+                                         DockPanel.Dock="Bottom"
+                                         HorizontalContentAlignment="Stretch"
+                                         Margin="0,5,0,5"
+                                         VerticalContentAlignment="Center">
                                 <Grid>
-                                    <TextBox x:Name="tbPages" IsEnabled="{Binding ElementName=rbPages, Path=IsChecked}" PreviewTextInput="tbPages_PreviewTextInput"/>
-                                    <TextBlock IsHitTestVisible="False" Text="{x:Static properties:Resources.PagesNumberExample}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="DarkGray">
+                                    <TextBox x:Name="tbPages"
+                                             IsEnabled="{Binding ElementName=rbPages, Path=IsChecked}"
+                                             PreviewTextInput="tbPages_PreviewTextInput" />
+                                    <TextBlock IsHitTestVisible="False"
+                                               Text="{x:Static properties:Resources.PagesNumberExample}"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0,0,0"
+                                               Foreground="DarkGray">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed" />
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, ElementName=tbPages}" Value="">
-                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=tbPages}"
+                                                                 Value="">
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -38,31 +72,60 @@
                         </DockPanel>
                     </DockPanel>
                     <DockPanel Margin="0,0,0,30">
-                        <TextBlock Text="{x:Static properties:Resources.Copies}" Width="100" DockPanel.Dock="Left" VerticalAlignment="Top"/>
-                        <TextBox Width="50" HorizontalAlignment="Left" Text="{Binding PrintTicket.CopyCount, Mode=TwoWay}"/>
+                        <TextBlock Text="{x:Static properties:Resources.Copies}"
+                                   Width="100"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Top" />
+                        <TextBox Width="50"
+                                 HorizontalAlignment="Left"
+                                 Text="{Binding PrintTicket.CopyCount, Mode=TwoWay}" />
                     </DockPanel>
                     <DockPanel Margin="0,0,0,30">
-                        <TextBlock Text="{x:Static properties:Resources.Printer}" Width="100" DockPanel.Dock="Left" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cmboPrinter" DisplayMemberPath="Name" SelectedValue="{Binding PrintQueue, Mode=TwoWay}" SelectionChanged="cmboPrinter_SelectionChanged"/>
+                        <TextBlock Text="{x:Static properties:Resources.Printer}"
+                                   Width="100"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Top" />
+                        <ComboBox x:Name="cmboPrinter"
+                                  DisplayMemberPath="Name"
+                                  SelectedValue="{Binding PrintQueue, Mode=TwoWay}"
+                                  SelectionChanged="cmboPrinter_SelectionChanged" />
                     </DockPanel>
                     <DockPanel Margin="0,0,0,30">
-                        <TextBlock Text="{x:Static properties:Resources.Orientation}" Width="100" DockPanel.Dock="Left" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cmboOrientation" SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding PrintTicket.PageOrientation, Mode=TwoWay}" SelectionChanged="cmboOrientation_SelectionChanged"/>
+                        <TextBlock Text="{x:Static properties:Resources.Orientation}"
+                                   Width="100"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Top" />
+                        <ComboBox x:Name="cmboOrientation"
+                                  SelectedValuePath="Key"
+                                  DisplayMemberPath="Value"
+                                  SelectedValue="{Binding PrintTicket.PageOrientation, Mode=TwoWay}"
+                                  SelectionChanged="cmboOrientation_SelectionChanged" />
                     </DockPanel>
                     <DockPanel Margin="0,0,0,30">
-                        <TextBlock Text="{x:Static properties:Resources.Duplex}" Width="100" DockPanel.Dock="Left" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cmboDuplexing" SelectedValuePath="Key" DisplayMemberPath="Value" SelectedValue="{Binding PrintTicket.Duplexing, Mode=TwoWay}"/>
+                        <TextBlock Text="{x:Static properties:Resources.Duplex}"
+                                   Width="100"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Top" />
+                        <ComboBox x:Name="cmboDuplexing"
+                                  SelectedValuePath="Key"
+                                  DisplayMemberPath="Value"
+                                  SelectedValue="{Binding PrintTicket.Duplexing, Mode=TwoWay}" />
                     </DockPanel>
                     <DockPanel Margin="0,0,0,30">
                         <Button x:Name="btnPrint"
                                 Width="100"
                                 Height="28"
-                                Content="{x:Static properties:Resources.PrintButton}" Grid.Column="1" Margin="3,0,0,0" HorizontalAlignment="Right" Click="btnPrint_Click" IsDefault="True"/>
+                                Content="{x:Static properties:Resources.PrintButton}"
+                                Grid.Column="1"
+                                Margin="3,0,0,0"
+                                HorizontalAlignment="Right"
+                                Click="btnPrint_Click"
+                                IsDefault="True" />
                     </DockPanel>
                 </StackPanel>
             </Border>
             <Border Background="#FF777777">
-                <Viewbox x:Name="vbPreview"/>
+                <Viewbox x:Name="vbPreview" />
             </Border>
         </DockPanel>
     </Grid>
