@@ -1,4 +1,4 @@
-# IPrint
+# PrintPreview.WPF
 Adds PrintDialog wraper to your project (with preview window)
 
 Repo contains two projects:
