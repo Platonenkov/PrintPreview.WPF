@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;netcoreapp3.1-windows;net5.0-windows;net35;</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;netcoreapp3.1-windows;net5.0-windows;net461;</TargetFrameworks>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Version>6.0.0.0</Version>
@@ -12,7 +12,7 @@
     <Description>Adds PrintDialog wraper to your project (with preview window)</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Platonenkov/PrintPreview.WPF</PackageProjectUrl>
-    <Copyright>https://github.com/Platonenkov</Copyright>
+    <Copyright>https://github.com/Platonenkov</Copyright> 
     <Authors>Platonenkov</Authors>
     <Company>https://github.com/Platonenkov</Company>
     <PackageIcon>icon.png</PackageIcon>
@@ -68,7 +68,7 @@
     </Page>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework.Trim())' == 'net35'">
+  <ItemGroup Condition="'$(TargetFramework.Trim())' == 'net461'">
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
