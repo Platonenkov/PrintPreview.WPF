@@ -2,8 +2,8 @@
 Adds PrintDialog wraper to your project (with preview window)
 
 Repo contains two projects:
-* **IPrint** - Class library.
-* **IPrintTest** - C# Sample Project, examine IPrint class library usage.
+* **PrintPreview.WPF** - Class library.
+* **PrintPreview.WPF.Test** - C# Sample Project, examine IPrint class library usage.
 
 ### IPrint class library usage:
 #### C#
