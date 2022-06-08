@@ -80,13 +80,15 @@
 
   <ItemGroup Condition="'$(TargetFramework.Trim())' == 'net461'">
     <Reference Include="ReachFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Printing" />
+
+    <!--для поддержки netframework 3.5 раскомментировать код ниже, а выше в Condition указать net35-->
+    <!--<Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework" />-->
   </ItemGroup>
 
 </Project>
