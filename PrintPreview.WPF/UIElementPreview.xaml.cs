@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Printing;
 using System.Text.RegularExpressions;
@@ -8,14 +7,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace IPrint
+namespace PrintPreview.WPF
 {
     public partial class UIElementPreview : Window
     {
-        public UIElement uie;
-        public string description;
+        public UIElement? uie;
+        public string? description;
 
-        private PrintDialog pd = new PrintDialog();
+        private readonly PrintDialog pd = new();
 
         public UIElementPreview()
         {
@@ -32,39 +31,24 @@ namespace IPrint
 
         public void GetPrinters()
         {
-            List<PrintQueue> printers = new List<PrintQueue>();
-            LocalPrintServer printServer = new LocalPrintServer();
-
-            printers.AddRange(printServer.GetPrintQueues(new EnumeratedPrintQueueTypes[] { EnumeratedPrintQueueTypes.Connections }));
-            printers.AddRange(printServer.GetPrintQueues(new EnumeratedPrintQueueTypes[] { EnumeratedPrintQueueTypes.Local }));
+            var printers = IPrintDialog.GetPrinters();
 
             cmboPrinter.ItemsSource = printers;
 
-            foreach (PrintQueue printer in printers)
+            foreach (var printer in printers.Where(printer => pd.PrintQueue.FullName.Equals(printer.FullName)))
             {
-                if (pd.PrintQueue.FullName.Equals(printer.FullName))
-                {
-                    pd.PrintQueue = printer;
-                    cmboPrinter.SelectedItem = printer;
-                }
+                pd.PrintQueue = printer;
+                cmboPrinter.SelectedItem = printer;
             }
         }
 
-        private void GetOrientations()
-        {
-            Dictionary<PageOrientation, string> orientations = new Dictionary<PageOrientation, string>();
+        private void GetOrientations() => cmboOrientation.ItemsSource = IPrintDialog.GetPageOrientations();
 
-            cmboOrientation.ItemsSource = new Dictionary<PageOrientation, string>()
-            {
-                { PageOrientation.Portrait, Properties.Resources.OrientationPortrait },
-                { PageOrientation.Landscape, Properties.Resources.OrientationLandscape }
-            };
-        }
 
         private void GetDuplexing()
         {
-            ReadOnlyCollection<Duplexing> allowedduplex = pd.PrintQueue.GetPrintCapabilities().DuplexingCapability;
-            Dictionary<Duplexing, string> duplex = new Dictionary<Duplexing, string>();
+            var allowedduplex = pd.PrintQueue.GetPrintCapabilities().DuplexingCapability;
+            var duplex = new Dictionary<Duplexing, string>();
 
             if (allowedduplex.Contains(Duplexing.OneSided)) { duplex.Add(Duplexing.OneSided, Properties.Resources.DuplexOneSided); }
             if (allowedduplex.Contains(Duplexing.TwoSidedLongEdge)) { duplex.Add(Duplexing.TwoSidedLongEdge, Properties.Resources.DuplexTwoSidedLongEdge); }
@@ -82,12 +66,12 @@ namespace IPrint
 
         private void PreparePreview()
         {
-            UIElement previewuie = IPrintDialog.UIElementClone(uie);
-            Border container = new Border();
+            var previewuie = IPrintDialog.UIElementClone(uie);
+            var container = new Border();
 
-            PageImageableArea area = pd.PrintQueue.GetPrintCapabilities().PageImageableArea;
+            var area = pd.PrintQueue.GetPrintCapabilities().PageImageableArea;
 
-            if (area != null && area != null)
+            if (area is { })
             {
                 if (pd.PrintTicket.PageOrientation == PageOrientation.Portrait)
                 {
@@ -104,7 +88,7 @@ namespace IPrint
             }
 
             container.Child = previewuie;
-            container.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
+            container.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             container.Arrange(new Rect(container.DesiredSize));
             container.UpdateLayout();
             container.Background = Brushes.White;
@@ -115,12 +99,12 @@ namespace IPrint
 
         private void PreparePrint()
         {
-            UIElement printuie = IPrintDialog.UIElementClone(uie);
-            Border container = new Border();
+            var printuie = IPrintDialog.UIElementClone(uie);
+            var container = new Border();
 
-            PageImageableArea area = pd.PrintQueue.GetPrintCapabilities().PageImageableArea;
+            var area = pd.PrintQueue.GetPrintCapabilities().PageImageableArea;
 
-            if (area != null && area != null)
+            if (area is { })
             {
                 if (pd.PrintTicket.PageOrientation == PageOrientation.Portrait)
                 {
@@ -135,7 +119,7 @@ namespace IPrint
             }
 
             container.Child = printuie;
-            container.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
+            container.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             container.Arrange(new Rect(container.DesiredSize));
             container.UpdateLayout();
 

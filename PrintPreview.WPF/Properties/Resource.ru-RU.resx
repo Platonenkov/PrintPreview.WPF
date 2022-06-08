@@ -112,19 +112,60 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\image.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Copies" xml:space="preserve">
+    <value>Копий</value>
   </data>
-  <data name="print" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\print.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Duplex" xml:space="preserve">
+    <value>Параметры</value>
   </data>
-  <data name="somestring" xml:space="preserve">
-    <value />
+  <data name="DuplexOneSided" xml:space="preserve">
+    <value>Односторонняя</value>
+  </data>
+  <data name="DuplexTwoSidedLongEdge" xml:space="preserve">
+    <value>Двусторонняя (длинная кромка)</value>
+  </data>
+  <data name="DuplexTwoSidedShortEdge" xml:space="preserve">
+    <value>Двусторонняя (короткая кромка)</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>Ориентация</value>
+  </data>
+  <data name="OrientationLandscape" xml:space="preserve">
+    <value>Альбомная</value>
+  </data>
+  <data name="OrientationPortrait" xml:space="preserve">
+    <value>Книжная</value>
+  </data>
+  <data name="PageCountPrefix" xml:space="preserve">
+    <value>Всего: </value>
+  </data>
+  <data name="PageCountSuffix" xml:space="preserve">
+    <value> лист. бумаги</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  <data name="PagesAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="PagesNumberExample" xml:space="preserve">
+    <value>Например: 5-7</value>
+  </data>
+  <data name="PrintButton" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="Printer" xml:space="preserve">
+    <value>Принтер</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Предпросмотр</value>
   </data>
 </root>

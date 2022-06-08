@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace IPrint
+namespace PrintPreview.WPF
 {
     /// <summary>
     /// Encapsulates a DocumentPaginator and allows
@@ -17,9 +13,9 @@ namespace IPrint
     /// </summary>
     public class PageRangeDocumentPaginator : DocumentPaginator
     {
-        private int _startIndex;
-        private int _endIndex;
-        private DocumentPaginator _paginator;
+        private readonly int _startIndex;
+        private readonly int _endIndex;
+        private readonly DocumentPaginator _paginator;
         public PageRangeDocumentPaginator(
           DocumentPaginator paginator,
           string pagerange)
@@ -27,11 +23,10 @@ namespace IPrint
             _paginator = paginator;
             _paginator.ComputePageCount();
 
-            string range = pagerange.Replace(" ", "");
-            string[] ranges = range.Split(new char[] { '-' }, 2, System.StringSplitOptions.RemoveEmptyEntries);
-            int from; int to;
-            if (!((ranges.Count() >= 1) && (int.TryParse(ranges[0], out from)) && (from > 0))) { from = 0; }
-            if (!((ranges.Count() >= 2) && (int.TryParse(ranges[1], out to)) && (to > from))) { to = 0; }
+            var range = pagerange.Replace(" ", "");
+            var ranges = range.Split(new[] { '-' }, 2, StringSplitOptions.RemoveEmptyEntries);
+            if (!(ranges.Length > 0 && int.TryParse(ranges[0], out var from) && from > 0)) { from = 0; }
+            if (!(ranges.Length >= 2 && int.TryParse(ranges[1], out var to) && to > from)) { to = 0; }
 
             if (from > 0 & to > 0)
             {
@@ -54,10 +49,7 @@ namespace IPrint
             return _paginator.GetPage(pageNumber + _startIndex);
         }
 
-        public override bool IsPageCountValid
-        {
-            get { return true; }
-        }
+        public override bool IsPageCountValid => true;
 
         public override int PageCount
         {
@@ -74,13 +66,10 @@ namespace IPrint
 
         public override Size PageSize
         {
-            get { return _paginator.PageSize; }
-            set { _paginator.PageSize = value; }
+            get => _paginator.PageSize;
+            set => _paginator.PageSize = value;
         }
 
-        public override IDocumentPaginatorSource Source
-        {
-            get { return _paginator.Source; }
-        }
+        public override IDocumentPaginatorSource Source => _paginator.Source;
     }
 }

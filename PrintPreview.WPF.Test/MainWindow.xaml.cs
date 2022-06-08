@@ -1,15 +1,16 @@
 ﻿using System.Windows;
-using IPrint;
 
-namespace IPrintTest
+namespace PrintPreview.WPF.Test
 {
-    public partial class wndMain : Window
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
-        public wndMain()
+        public MainWindow()
         {
             InitializeComponent();
         }
-
         private void btnFlowDocumentPreview_Click(object sender, RoutedEventArgs e)
         {
             IPrintDialog.PreviewDocument(fdSample);
@@ -29,5 +30,6 @@ namespace IPrintTest
         {
             IPrintDialog.PrintUIElement(grdSample);
         }
+
     }
 }

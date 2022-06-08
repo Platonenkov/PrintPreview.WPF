@@ -1,33 +1,56 @@
-﻿<Window x:Class="IPrintTest.wndMain"
+﻿<Window x:Class="PrintPreview.WPF.Test.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IPrintTest"
         mc:Ignorable="d"
-        Title="IPrint Test" Height="700" Width="1024" Icon="img/print.png">
+        Title="IPrint Test"
+        Height="700"
+        Width="1024"
+        Icon="img/print.png">
     <Grid>
         <DockPanel LastChildFill="True">
             <Grid DockPanel.Dock="Bottom">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnFlowDocumentPreview" Content="Document Preview" Grid.Column="0" Margin="10" Height="42" Click="btnFlowDocumentPreview_Click"/>
-                <Button x:Name="btnFlowDocumentPrint" Content="Document Print" Grid.Column="1" Margin="10" Height="42" Click="btnFlowDocumentPrint_Click"/>
-                <Button x:Name="btnUIElementPreview" Content="UIElement Preview" Grid.Column="2" Margin="10" Height="42" Click="btnUIElementPreview_Click"/>
-                <Button x:Name="btnUIElementPrint" Content="UIElement Print" Grid.Column="3" Margin="10" Height="42" Click="btnUIElementPrint_Click"/>
+                <Button x:Name="btnFlowDocumentPreview"
+                        Content="Document Preview"
+                        Grid.Column="0"
+                        Margin="10"
+                        Height="42"
+                        Click="btnFlowDocumentPreview_Click" />
+                <Button x:Name="btnFlowDocumentPrint"
+                        Content="Document Print"
+                        Grid.Column="1"
+                        Margin="10"
+                        Height="42"
+                        Click="btnFlowDocumentPrint_Click" />
+                <Button x:Name="btnUIElementPreview"
+                        Content="UIElement Preview"
+                        Grid.Column="2"
+                        Margin="10"
+                        Height="42"
+                        Click="btnUIElementPreview_Click" />
+                <Button x:Name="btnUIElementPrint"
+                        Content="UIElement Print"
+                        Grid.Column="3"
+                        Margin="10"
+                        Height="42"
+                        Click="btnUIElementPrint_Click" />
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <FlowDocumentScrollViewer Grid.Column="0" Margin="10">
+                <FlowDocumentScrollViewer Grid.Column="0"
+                                          Margin="10">
                     <FlowDocument x:Name="fdSample">
                         <Paragraph>
                             <Bold>
@@ -138,36 +161,49 @@
                         </Paragraph>
                     </FlowDocument>
                 </FlowDocumentScrollViewer>
-                <Border Grid.Column="1" Margin="10">
+                <Border Grid.Column="1"
+                        Margin="10">
                     <Grid x:Name="grdSample">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock TextWrapping="Wrap" Grid.Row="0" Grid.Column="0">
+                        <TextBlock TextWrapping="Wrap"
+                                   Grid.Row="0"
+                                   Grid.Column="0">
                             <Run>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate eu justo ut placerat. Mauris lobortis ex quam, vel volutpat quam dictum et. Sed lacinia elit tortor, eu varius lectus imperdiet at. Morbi feugiat facilisis magna malesuada venenatis. Vestibulum lobortis, nisi eget tristique lacinia, eros augue laoreet risus, sed laoreet nisi sem suscipit nibh. Fusce enim neque, volutpat quis semper et, consequat at odio. Ut imperdiet tincidunt velit, ut dapibus lacus bibendum eleifend.
                             </Run>
                         </TextBlock>
-                        <Image Source="img/Image.png"  Grid.Row="0" Grid.Column="1"/>
-                        <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.Column="1">
+                        <Image Source="img/Image.png"
+                               Grid.Row="0"
+                               Grid.Column="1" />
+                        <TextBlock TextWrapping="Wrap"
+                                   Grid.Row="1"
+                                   Grid.Column="1">
                             <Run>
                                 Fusce mattis, sem sit amet volutpat elementum, sem tellus tincidunt turpis, eu consectetur tellus tortor sed massa. Proin hendrerit porttitor mauris, nec lobortis risus gravida at. Etiam non tellus sit amet turpis tincidunt euismod non quis nulla. Morbi malesuada sit amet odio non iaculis. Suspendisse tincidunt blandit neque. Integer turpis mauris, pharetra ut mauris a, volutpat sollicitudin nisi. Curabitur pulvinar lectus sit amet facilisis auctor. Sed ultricies, enim non facilisis ultrices, ligula dolor facilisis nisl, non ultricies lectus dui non ante.
                             </Run>
                         </TextBlock>
-                        <Image Source="img/Image.png"  Grid.Row="1" Grid.Column="0"/>
-                        <TextBlock TextWrapping="Wrap" Grid.Row="2" Grid.Column="0">
+                        <Image Source="img/Image.png"
+                               Grid.Row="1"
+                               Grid.Column="0" />
+                        <TextBlock TextWrapping="Wrap"
+                                   Grid.Row="2"
+                                   Grid.Column="0">
                             <Run>
                                 Pellentesque euismod metus eget vehicula congue. Proin semper tempus erat in lacinia. Etiam nibh ante, auctor vitae tempor at, cursus vitae erat. Ut feugiat est sit amet blandit pulvinar. Praesent et posuere diam, in hendrerit erat. Etiam tempor eros a arcu consectetur interdum. Donec sem orci, tristique at tellus tempus, tincidunt aliquet libero. Aenean arcu nibh, lobortis in erat ut, venenatis facilisis magna. Integer ullamcorper tincidunt lacus non consectetur. In felis leo, semper eget tortor id, venenatis finibus mauris.
                             </Run>
                         </TextBlock>
-                        <Image Source="img/Image.png"  Grid.Row="2" Grid.Column="1"/>
+                        <Image Source="img/Image.png"
+                               Grid.Row="2"
+                               Grid.Column="1" />
                     </Grid>
                 </Border>
             </Grid>
