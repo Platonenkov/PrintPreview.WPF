@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Printing;
 using System.Windows;
@@ -19,7 +20,7 @@ namespace PrintPreview.WPF
             //printers.AddRange(printServer.GetPrintQueues(new[] { EnumeratedPrintQueueTypes.Connections }));
             //printers.AddRange(printServer.GetPrintQueues(new[] { EnumeratedPrintQueueTypes.Local }));
             var pr = new LocalPrintServer().GetPrintQueues(
-                new [] {EnumeratedPrintQueueTypes.Connections, EnumeratedPrintQueueTypes.Local});
+                new[] { EnumeratedPrintQueueTypes.Connections, EnumeratedPrintQueueTypes.Local });
             return pr;
         }
 
@@ -46,7 +47,7 @@ namespace PrintPreview.WPF
             return (UIElement)XamlReader.Load(xmlReader);
         }
 
-        public static bool PreviewDocument(FlowDocument? flowdocument, string description = "", bool singlecolumn = true, Window? owner = null)
+        public static bool PreviewDocument(FlowDocument? flowdocument, string description = "", bool singlecolumn = true, Window? owner = null, PageOrientation? StartOrientation = null)
         {
             if (flowdocument is null) { return false; }
 
@@ -54,7 +55,8 @@ namespace PrintPreview.WPF
             {
                 fd = FlowDocumentClone(flowdocument),
                 description = description,
-                singlecolumn = singlecolumn
+                singlecolumn = singlecolumn,
+                BaseOrientation = StartOrientation
             };
 
             if (owner is not null) { w.Owner = owner; w.Icon = owner.Icon; }
@@ -103,14 +105,16 @@ namespace PrintPreview.WPF
             return true;
         }
 
-        public static bool PreviewUIElement(UIElement? uielement, string description = "", Window? owner = null)
+        public static bool PreviewUIElement(UIElement? uielement, string description = "", Window? owner = null, Func<UIElement?, UIElement?>? Clone = null, PageOrientation? StartOrientation = null)
         {
             if (uielement is null) { return false; }
 
             var w = new UIElementPreview
             {
-                uie = UIElementClone(uielement),
-                description = description
+                uie = Clone?.Invoke(uielement) ?? UIElementClone(uielement),
+                description = description,
+                Clone = Clone,
+                BaseOrientation = StartOrientation
             };
 
             if (owner is not null) { w.Owner = owner; w.Icon = owner.Icon; }
@@ -124,11 +128,11 @@ namespace PrintPreview.WPF
             };
         }
 
-        public static bool PrintUIElement(UIElement? uielement, string description = "")
+        public static bool PrintUIElement(UIElement? uielement, string description = "", Func<UIElement?, UIElement?>? Clone = null)
         {
             if (uielement is null) { return false; }
 
-            var uie = UIElementClone(uielement);
+            var uie = Clone?.Invoke(uielement) ?? UIElementClone(uielement);
             var pd = new PrintDialog();
             var container = new Border();
 

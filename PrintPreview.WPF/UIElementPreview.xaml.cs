@@ -15,6 +15,8 @@ namespace PrintPreview.WPF
         public string? description;
 
         private readonly PrintDialog pd = new();
+        public Func<UIElement?, UIElement?>? Clone;
+        public PageOrientation? BaseOrientation;
 
         public UIElementPreview()
         {
@@ -27,6 +29,8 @@ namespace PrintPreview.WPF
 
             GetPrinters();
             GetOrientations();
+            if (BaseOrientation is not null)
+                cmboOrientation.SelectedItem = IPrintDialog.GetPageOrientations().FirstOrDefault(f => f.Key == BaseOrientation.Value);
         }
 
         public void GetPrinters()
@@ -66,7 +70,7 @@ namespace PrintPreview.WPF
 
         private void PreparePreview()
         {
-            var previewuie = IPrintDialog.UIElementClone(uie);
+            var previewuie = Clone?.Invoke(uie) ?? IPrintDialog.UIElementClone(uie);
             var container = new Border();
 
             var area = pd.PrintQueue.GetPrintCapabilities().PageImageableArea;
@@ -99,7 +103,7 @@ namespace PrintPreview.WPF
 
         private void PreparePrint()
         {
-            var printuie = IPrintDialog.UIElementClone(uie);
+            var printuie = Clone?.Invoke(uie) ?? IPrintDialog.UIElementClone(uie);
             var container = new Border();
 
             var area = pd.PrintQueue.GetPrintCapabilities().PageImageableArea;

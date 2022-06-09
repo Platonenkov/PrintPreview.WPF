@@ -14,6 +14,7 @@ namespace PrintPreview.WPF
         public FlowDocument? fd;
         public string? description;
         public bool singlecolumn;
+        public PageOrientation? BaseOrientation;
 
         private readonly PrintDialog pd = new();
 
@@ -28,6 +29,8 @@ namespace PrintPreview.WPF
 
             GetPrinters();
             GetOrientations();
+            if (BaseOrientation is not null)
+                cmboOrientation.SelectedItem = IPrintDialog.GetPageOrientations().FirstOrDefault(f => f.Key == BaseOrientation.Value);
         }
 
         public void GetPrinters()
